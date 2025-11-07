@@ -1,0 +1,11 @@
+{
+  "name": "rawnaq",
+  "version": "1.0.0",
+  "description": "Rawnaq - dynamic product website connected to Supabase",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.47.2"
+  }
+}
