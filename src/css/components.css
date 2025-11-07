@@ -1,0 +1,18 @@
+/* Components styling */
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.site-footer {
+    margin-top: auto;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}

@@ -1,0 +1,25 @@
+
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.sale-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+}
+
+.product-image {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.rating-section .fas {
+    font-size: 0.8rem;
+}
