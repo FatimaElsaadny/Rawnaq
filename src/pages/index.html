@@ -4,102 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raunaq - Your Premium Store</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Custom CSS Files -->
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/components.css">
+
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" href="../css/components/navbar.css">
+
+    <!-- Home Page CSS -->
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <!-- Placeholders for components -->
+    <!-- Header & Navbar -->
     <div id="header-container"></div>
     <div id="navbar-container"></div>
-    
 
-    
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="text-center">
+            <h1 class="display-4 text-primary mb-3">Welcome to Raunaq</h1>
+            <p class="lead text-muted">Your premier destination for quality products and exceptional service</p>
+
+            <!-- Featured Products Section -->
+            <div class="row mt-5" id="products-container">
+                <div class="col-12">
+                    <h2 class="mb-4">Featured Products</h2>
+                    <div class="row" id="featured-products">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <div id="footer-container"></div>
 
-    <!-- JavaScript Files -->
+    <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Utility JS -->
     <script src="../js/utils.js"></script>
-    
+
+    <!-- Dynamic Components Loader -->
     <script>
-        // Simple component loader
         async function loadComponent(componentPath, containerId) {
             try {
                 const response = await fetch(componentPath);
+                if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
+                
                 const html = await response.text();
                 document.getElementById(containerId).innerHTML = html;
+
+                if (componentPath.includes('navbar.html')) {
+                    await loadNavbarJS();
+                }
             } catch (error) {
                 console.error('Error loading component:', error);
-                document.getElementById(containerId).innerHTML = '<p>Error loading component</p>';
+                document.getElementById(containerId).innerHTML = 
+                    `<div class="alert alert-warning">Error loading ${componentPath}</div>`;
             }
         }
 
-        // Load all components when page is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load components
-            loadComponent('../components/header.html', 'header-container');
-            loadComponent('../components/navbar.html', 'navbar-container');
-            loadComponent('../components/footer.html', 'footer-container');
-            
-            // Load featured products
+        async function loadNavbarJS() {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = '../js/components/navbar.js';
+                script.onload = () => resolve();
+                script.onerror = (e) => reject(e);
+                document.body.appendChild(script);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadComponent('../components/header.html', 'header-container');
+            await loadComponent('../components/navbar.html', 'navbar-container');
+            await loadComponent('../components/footer.html', 'footer-container');
             loadFeaturedProducts();
         });
 
-        // Mock function to load featured products
-        async function loadFeaturedProducts() {
+        function loadFeaturedProducts() {
             const productsContainer = document.getElementById('featured-products');
-            
-            // Mock products data
+            if (!productsContainer) return;
+
             const featuredProducts = [
-                {
-                    id: 1,
-                    name: "Wireless Headphones",
-                    price: 99.99,
-                    image: "https://via.placeholder.com/300x200/007bff/ffffff?text=Headphones",
-                    category: "Electronics"
-                },
-                {
-                    id: 2,
-                    name: "Smart Watch",
-                    price: 199.99,
-                    image: "https://via.placeholder.com/300x200/28a745/ffffff?text=Smart+Watch",
-                    category: "Electronics"
-                },
-                {
-                    id: 3,
-                    name: "Running Shoes",
-                    price: 79.99,
-                    image: "https://via.placeholder.com/300x200/dc3545/ffffff?text=Running+Shoes",
-                    category: "Sports"
-                },
-                {
-                    id: 4,
-                    name: "Backpack",
-                    price: 49.99,
-                    image: "https://via.placeholder.com/300x200/ffc107/000000?text=Backpack",
-                    category: "Fashion"
-                }
+                { id:1, name:"Wireless Headphones", price:99.99, image:"https://via.placeholder.com/300x200/007bff/ffffff?text=Headphones", category:"Electronics" },
+                { id:2, name:"Smart Watch", price:199.99, image:"https://via.placeholder.com/300x200/28a745/ffffff?text=Smart+Watch", category:"Electronics" },
+                { id:3, name:"Running Shoes", price:79.99, image:"https://via.placeholder.com/300x200/dc3545/ffffff?text=Running+Shoes", category:"Sports" },
+                { id:4, name:"Backpack", price:49.99, image:"https://via.placeholder.com/300x200/ffc107/000000?text=Backpack", category:"Fashion" }
             ];
 
-            // Display products
             featuredProducts.forEach(product => {
                 const productHTML = `
                     <div class="col-md-3 col-sm-6 mb-4">
                         <div class="card h-100 shadow-sm">
-                            <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height:200px;object-fit:cover;">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${product.name}</h5>
                                 <p class="card-text text-muted">${product.category}</p>

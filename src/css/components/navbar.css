@@ -1,12 +1,236 @@
-.navbar-nav .nav-link {
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    transition: all 0.3s ease;
-    color: #333;
+/* Navbar Styles */
+.navbar-brand { 
+  color:#333; 
+  font-family:'Playfair Display', serif; 
+}
+.nav-link { 
+  color:#333; 
+  font-weight:500; 
+}
+.nav-link:hover { 
+  color:#ffcce3; /* بيبي بينك على hover */
 }
 
-.navbar-nav .nav-link:hover {
-    background-color: #e7f1ff;
-    color: #0d6efd;
+/* Input & Buttons */
+.input-group .form-control { 
+  border-radius:12px; /* border-radius للفيلدز */
+}
+.input-group .btn { 
+  border-radius:12px; /* للـ button */
+}
+.btn-login,
+.btn-google {
+  border-radius:12px; /* للـ buttons */
+}
+
+/* User Account */
+.user-account-toggle { 
+  cursor:pointer; 
+  transition:0.3s; 
+}
+.user-account-toggle:hover { 
+  color:#ffcce3; /* بيبي بينك */
+}
+
+/* Badges */
+.badge { 
+  font-size:0.6rem; 
+  padding:2px 5px; 
+}
+
+/* Modal Styles */
+.modal-overlay { 
+  display:none; 
+  position:fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  background:rgba(0,0,0,0.5); 
+  justify-content:center; 
+  align-items:center; 
+  z-index:1000; 
+}
+.modal-content { 
+  display:flex; 
+  width:800px; 
+  max-width:90%; 
+  border-radius:15px; 
+  overflow:hidden; 
+  box-shadow:0 10px 25px rgba(0,0,0,0.2); 
+  border:2px solid #f0f0f0; 
+}
+.modal-left { 
+  flex:1; 
+  background:#fce4ec; 
+}
+.modal-left img { 
+  width:100%; 
+  height:100%; 
+  object-fit:cover; 
+}
+.modal-right { 
+  flex:1; 
+  padding:40px 30px; 
+  background:#fff; 
+  display:flex; 
+  flex-direction:column; 
+  justify-content:center; 
+  position:relative; 
+}
+.modal-right h2 { 
+  color:#ff6b81; 
+  margin-bottom:10px; 
+}
+.modal-right input { 
+  width:100%; 
+  padding:12px 15px; 
+  margin-bottom:15px; 
+  border-radius:12px; /* border-radius للفيلدز */
+  border:1px solid #cce7ff; 
+}
+.modal-right input:focus { 
+  border-color:#ffcce3; 
+  box-shadow:0 0 5px rgba(255,204,227,0.5); /* بيبي بينك */
+}
+.btn-login { 
+  width:100%; 
+  padding:12px; 
+  border-radius:12px; 
+  border:none; 
+  background:linear-gradient(135deg,#ff6b81,#ff8aa0); 
+  color:#fff; 
+  margin-bottom:12px; 
+}
+.btn-login:hover { 
+  background:linear-gradient(135deg,#ffcce3,#ff6b81); /* hover بيبي بينك */
+}
+.btn-google { 
+  width:100%; 
+  padding:12px; 
+  border-radius:12px; 
+  border:none; 
+  background:#e0f0ff; 
+  color:#007bff; 
+  margin-bottom:12px; 
+}
+.btn-google:hover { 
+  background:#cce7ff; 
+}
+
+/* Close button */
+.modal-close { 
+  position:absolute; 
+  top:15px; 
+  right:20px; 
+  font-size:1.5rem; 
+  cursor:pointer; 
+}
+
+/* Hidden */
+.hidden { 
+  display:none; 
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .modal-content{ flex-direction:column; width:90%; }
+  .modal-left{ height:200px; }
+  .modal-right{ padding:20px; }
+}
+
+/* Sidebar Brand */
+.brand-section img.brand-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border:2px solid #ff8aa0;
+}
+
+/* User Account */
+.user-account i {
+  color: #ff6b81;
+}
+.user-account span {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Sidebar Icons */
+.sidebar-icons .btn {
+  background:#fff;
+  border:1px solid #ff8aa0;
+  color:#ff6b81;
+  width:50px;
+  height:50px;
+  border-radius:12px; /* للـ icons */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.sidebar-icons .btn .badge {
+  top:-5px;
+  right:-5px;
+}
+
+/* Divider */
+.sidebar-divider {
+  border-top:1px solid #ffcccc;
+  margin:10px 0;
+}
+
+/* Search */
+.search-box input {
+  border-radius:12px; /* للفيلد */
+}
+.search-box button {
+  border-radius:12px; /* للزر */
+  background:#ff6b81;
+  color:#fff;
+  border:none;
+}
+.search-box button:hover {
+  background:#ffcce3; /* hover بيبي بينك */
+}
+
+/* Categories */
+.categories h6 {
+  color:#ff6b81;
+}
+.categories .category-link {
+  color:#333;
+  font-weight:500;
+  text-decoration:none;
+}
+.categories .category-link:hover {
+  color:#ffcce3; /* hover بيبي بينك */
+}
+
+/* Offcanvas adjustments */
+.offcanvas-start {
+  width: 280px;
+  background:#fff;
+}
+
+/* Force modal to appear above offcanvas on small screens */
+.modal-overlay {
+  z-index: 2000; /* خلي أعلى من offcanvas */
+}
+
+/* Center modal vertically and horizontally */
+.modal-content {
+  margin: 0 auto; /* center horizontally */
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+}
+
+/* Optional: make modal scrollable if screen small */
+@media(max-width:768px){
+  .modal-content {
+    width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+  }
 }
