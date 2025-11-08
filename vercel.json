@@ -1,15 +1,28 @@
 {
   "version": 2,
+  "name": "Rawnaq",
   "builds": [
-    { "src": "src/pages/*.html", "use": "@vercel/static" },
-    { "src": "src/components/*", "use": "@vercel/static" },
-    { "src": "src/css/*", "use": "@vercel/static" },
-    { "src": "src/js/*", "use": "@vercel/static" }
+    {
+      "src": "pages/**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/**/*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/**/*.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "components/**/*.html",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
-    { "src": "/components/(.*)", "dest": "/src/components/$1" },
-    { "src": "/css/(.*)", "dest": "/src/css/$1" },
-    { "src": "/js/(.*)", "dest": "/src/js/$1" },
-    { "src": "/(.*)", "dest": "/src/pages/$1" }
+    {
+      "src": "/(.*)",
+      "dest": "/pages/$1"
+    }
   ]
 }
