@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/**/*",
+      "src": "src/pages/index.html",
       "use": "@vercel/static"
     }
   ],
@@ -10,6 +10,10 @@
     {
       "src": "/(.*)",
       "dest": "/src/pages/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/src/pages/index.html"
     }
   ]
 }
